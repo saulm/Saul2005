@@ -4,6 +4,12 @@ pip install -r requirements.txt
 python manage.py syncdb
 python manage.py runserver
 
+In order to use the facebook login, add to /etc/hosts:
+
+127.0.0.1       local.stigy.com
+
+And test in the URL: http://local.stigy.com:8000/
+
 
 Known Issues:
 *Pending require email pipeline test

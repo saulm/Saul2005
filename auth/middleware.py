@@ -5,6 +5,7 @@ from auth.utils import get_profile, get_user_type
 
 class UpdateProfileMiddleware(object):
     def process_request(self, request):
+        request.user_profile = None
         if request.user.is_staff or request.user.is_superuser:
             return
         ignore = [reverse('edit_user_profile'), reverse("auth_logout")]
