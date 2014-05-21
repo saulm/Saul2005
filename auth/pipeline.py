@@ -2,7 +2,7 @@ from django.shortcuts import redirect
 from social.pipeline.partial import partial
 from auth.utils import get_user_type, get_profile
 from auth.models import PROFILE_CLASS
-
+ 
 @partial
 def get_username(strategy, details, user=None, is_new=False, *args, **kwargs):
     if is_new and details.get('email'):
@@ -27,3 +27,4 @@ def require_email(strategy, details, user=None, is_new=False, *args, **kwargs):
         else:
             strategy.backend.REQUIRES_EMAIL_VALIDATION = True
             return redirect('require_email')
+    return details

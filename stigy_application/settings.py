@@ -51,6 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'auth.middleware.UpdateProfileMiddleware',
+    'social.apps.django_app.middleware.SocialAuthExceptionMiddleware'
 )
 
 ROOT_URLCONF = 'stigy_application.urls'
@@ -93,6 +94,7 @@ from registration_defaults.settings import *
 
 USER_TYPE = "Customer"
 LOGIN_REDIRECT_URL = "/"
+SOCIAL_AUTH_LOGIN_ERROR_URL = "/"
 
 AUTHENTICATION_BACKENDS = (
       'social.backends.facebook.FacebookOAuth2',

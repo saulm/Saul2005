@@ -12,6 +12,7 @@ def get_profile(user):
 def send_validation(strategy, code):
     url = reverse('social:complete', args=(strategy.backend.name,)) + \
             '?verification_code=' + code.code
+    # TODO: Change hardcoded URL
     send_mail('Validate your account',
               'Validate your account {0}'.format("http://localhost:8000"+url),
               settings.DEFAULT_FROM_EMAIL,

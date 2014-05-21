@@ -1,7 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from auth.utils import get_profile
+from auth.utils import get_profile, get_user_type
 
 class UpdateProfileMiddleware(object):
     def process_request(self, request):
@@ -13,7 +13,7 @@ class UpdateProfileMiddleware(object):
                 request.user_profile = get_profile(request.user)
             except ObjectDoesNotExist:
                 return HttpResponseRedirect(reverse('edit_user_profile'))
-            
-            if request.user_profile.first_name == "" or request.user_profile.last_name == "":
+                            
+            if get_user_type() == "C" and  (request.user_profile.first_name == "" or request.user_profile.last_name == ""):
                 return HttpResponseRedirect(reverse('edit_user_profile'))
             

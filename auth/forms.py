@@ -11,6 +11,7 @@ from auth.models import CustomerProfile, BusinessProfile
 class AdminUserCreationForm(UserCreationForm):
     USER_TYPES = (("C", "Customer"), ("B", "Business"))
     user_type = forms.ChoiceField(choices=USER_TYPES, required=True)
+    email = forms.EmailField()
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -26,13 +27,8 @@ class AdminUserCreationForm(UserCreationForm):
         if email and user_type:
             username = "%s_%s" % (user_type, email)
             cleaned_data['username'] = username
-            try:
-                user = User.objects.get(username = username)
-            except ObjectDoesNotExist:
-                return cleaned_data
-            raise forms.ValidationError("A User with that email already exists")
+        return cleaned_data
         
-
 class UserRegistrationForm(RegistrationFormTermsOfService):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
