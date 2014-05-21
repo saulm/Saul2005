@@ -1,0 +1,5 @@
+Django == 1.6.5
+django-reg
+python-social-auth == 0.1.24
+django-registration-defaults
+django-bootstrap3

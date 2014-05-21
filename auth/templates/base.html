@@ -1,0 +1,26 @@
+{% extends 'bootstrap3/bootstrap3.html' %}
+{% load bootstrap3 %}
+
+{% block bootstrap3_content %}
+    <div class="container">
+      <nav>
+        <ul class="nav navbar-nav">
+          {% if not user.is_authenticated %}
+          <li><a href="{% url 'registration_register' %}">Register</a></li>
+          <li><a href="{% url 'auth_login' %}">Login</a></li>
+          <li><a href="{% url 'social:begin' 'facebook' %}">Facebook Login</a></li>
+          <li><a href="{% url 'social:begin' 'yahoo' %}">Yahoo Login</a></li>
+          {% else %}
+          <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+        <h1>{% block title %}(no title){% endblock %}</h1>
+        {% bootstrap_messages %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+{% endblock %}
+
+ 
